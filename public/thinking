@@ -1,0 +1,13 @@
+##1.tomcat是什么？
+#####tomcat说是web容器，什么是web容器？
+#####从http请求来看，1.先找dns，找到后知道域名对应的ip地址是什么，应用部署在tomcat中，所以ip:port是tomcat的地址，请求抵达的第一层应该就是tomcat这种web容器。
+#####请求到tomcat了以后，做了什么？tomcat启动时是有监听socket的，可能监听的就是本地端口咯，有http请求过来实际上就是建立tcp连接，然后就是socket的connect accept阶段，握手成功后开始传输数据，数据的传输也是靠socket的，调用系统底层函数poll epoll,启动时就已经注册过监听的事件了。
+#####socket接受了以后呢，对http请求进行转换，InputStream转换为request对象，再然后呢？需要继续看源码了。
+
+##2.spring mvc在一次请求中到底走过了多少层的handler和filter。
+#####中枢是dispatcherServlet，什么是servlet？
+
+
+
+##3.nanoTime为什么t1 < t0会有溢出风险
+#####就算t0数字会溢出，难道溢出了还能做比较？而且难道溢出了，t1 - t0 < 0这种表达式就没事？颠覆了小学数学。。。
